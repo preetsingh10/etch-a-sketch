@@ -1,6 +1,7 @@
 const canvas = document.querySelector(".gridCanvas");
 const gridSizeButton = document.querySelector(".grid-size-btn");
 const eraser = document.querySelector('.eraser');
+const gridRange = document.querySelector('.grid-range');
 function grid(dimensions) {
     let opacity = 0;
     // random color generator
@@ -21,7 +22,6 @@ function grid(dimensions) {
         for (j = 1; j <= dimensions; j++) {
             const rowSquare = document.createElement("div");
             rowSquare.classList.add("rowSquare");
-
             rowSquare.addEventListener("mouseover", () => {
 
                 rowSquare.style.backgroundColor = `${randomRGB()}`;
@@ -38,13 +38,16 @@ function grid(dimensions) {
         }
     }
 }
-grid(30);
+gridRange.addEventListener('input', ()=>{
+    canvas.textContent = "";
+    grid(gridRange.value); 
+})
+
 gridSizeButton.addEventListener("click", () => {
     canvas.textContent = "";
 
     let userInput = prompt("Select any size upto 100");
     if (userInput < 100) {
-        const size = userInput;
         grid(userInput);
     } else {
         alert("Please input a number below 100");
