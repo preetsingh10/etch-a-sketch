@@ -26,7 +26,7 @@ function grid(dimensions) {
         rowSquare.style.backgroundColor = `${randomRGB()}`;
 
       });
-      rowSquare.addEventListener("touchmove", () => {
+      rowSquare.addEventListener("touchstart", () => {
      
         rowSquare.style.backgroundColor = `${randomRGB()}`;
 
