@@ -26,10 +26,10 @@ function grid(dimensions) {
         rowSquare.style.backgroundColor = `${randomRGB()}`;
 
       });
-      rowSquare.addEventListener("touchstart", () => {
+      rowSquare.addEventListener("touchstart", (e) => {
      
         rowSquare.style.backgroundColor = `${randomRGB()}`;
-
+        e.preventDefault();
       });
 
       columnDiv.appendChild(rowSquare);
