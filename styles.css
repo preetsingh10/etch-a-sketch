@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 0;
 
@@ -8,24 +8,26 @@ body{
     align-items: center;
     gap: 10px;
 }
-h1{
+
+h1 {
     color: rgb(234, 137, 1);
 }
-.gridCanvas{
-   
-    border: 1px solid black ;
+
+.gridCanvas {
+
+    border: 1px solid black;
     width: fit-content;
     display: flex;
     /* flex-wrap: wrap; */
     flex-direction: column;
-    
-  
-}
-.rowSquare{
-    
-    
-    width:10px; 
-    height:10px;
-    
+
+
 }
 
+.rowSquare {
+
+
+    width: 10px;
+    height: 10px;
+
+}
