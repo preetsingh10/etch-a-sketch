@@ -1,3 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+}
 h1{
     color: red;
 }
+.gridCanvas{
+    margin:10px 10px ;
+    border: 1px solid ;
+    width: fit-content;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    /* align-items: center; */
+  
+}
+.rowSquare{
+    
+    border:1px solid;
+    width:10px; 
+    height:10px;
+    
+}
+
