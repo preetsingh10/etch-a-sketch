@@ -2,15 +2,22 @@ const canvas = document.querySelector(".gridCanvas");
 const gridSizeButton = document.querySelector(".grid-size-btn");
 const eraser = document.querySelector('.eraser');
 const gridRange = document.querySelector('.grid-range');
+const colorPicker = document.querySelector('.colorPicker');
+
+// random color generator
+function randomRGB() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
+}
 function grid(dimensions) {
-    let opacity = 0;
-    // random color generator
-    function randomRGB() {
-        let red = Math.floor(Math.random() * 256);
-        let green = Math.floor(Math.random() * 256);
-        let blue = Math.floor(Math.random() * 256);
-        return `rgb(${red}, ${green}, ${blue})`;
-    }
+
+    let colorOfSketch = 'rgb(0,0,0)'
+    colorPicker.addEventListener('input', ()=>{
+        colorOfSketch = `${colorPicker.value}`;
+        colorPicker.toggleAttribute
+    })
 
     // column with each div of display flex
     for (i = 1; i <= dimensions; i++) {
@@ -22,25 +29,32 @@ function grid(dimensions) {
         for (j = 1; j <= dimensions; j++) {
             const rowSquare = document.createElement("div");
             rowSquare.classList.add("rowSquare");
-            rowSquare.addEventListener("mouseover", () => {
-
-                rowSquare.style.backgroundColor = `${randomRGB()}`;
-
-                eraser.addEventListener('click', () => {
-                    rowSquare.style.backgroundColor = 'white';
-                });
-
-            });
 
 
+            
+            rowSquare.addEventListener('mouseover',(e)=>{
+                e.preventDefault();
+                rowSquare.style.backgroundColor = `${colorOfSketch}`;
+               
+               
+
+            })
+      
 
             columnDiv.appendChild(rowSquare);
         }
     }
 }
-gridRange.addEventListener('input', ()=>{
+eraser.addEventListener('click', () => {
+    const rowSquare = document.querySelectorAll('.rowSquare');
+    rowSquare.forEach(square => {
+        square.style.backgroundColor = 'white';
+    })
+    
+});
+gridRange.addEventListener('input', () => {
     canvas.textContent = "";
-    grid(gridRange.value); 
+    grid(gridRange.value);
 })
 
 gridSizeButton.addEventListener("click", () => {
@@ -53,3 +67,5 @@ gridSizeButton.addEventListener("click", () => {
         alert("Please input a number below 100");
     }
 });
+grid(gridRange.value);
+

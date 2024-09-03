@@ -15,11 +15,13 @@
     <h1 class="heading">Etch a Sketch 😄</h1>
 
     <button class="grid-size-btn">Set grid size</button>
-    <input class="grid-range" type="range" min="0" max="100" value="16">
-    <button class="eraser">
-        <i class="fa-solid fa-eraser"></i>
-      </button>
-    <div class="gridCanvas"></div>
-
+    <input class="grid-range" type="range" min="10" max="100" value="16" />
+    <div class="main">
+      <div class="tools">
+        <input class="colorPicker" type="color" >
+        <button class="eraser"><i class="fa-solid fa-eraser"></i>Eraser</button>
+      </div>
+      <div class="gridCanvas"></div>
+    </div>
   </body>
 </html>
