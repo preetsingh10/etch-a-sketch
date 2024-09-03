@@ -4,6 +4,8 @@ const clear = document.querySelector('.clear');
 const eraser = document.querySelector('.eraser');
 const gridRange = document.querySelector('.grid-range');
 const colorPicker = document.querySelector('.colorPicker');
+const randomColor = document.querySelector('.randomColor');
+const randomColors = document.querySelector('.randomColors');
 
 // random color generator
 function randomRGB() {
@@ -14,10 +16,23 @@ function randomRGB() {
 }
 function grid(dimensions) {
 
-    let colorOfSketch = 'rgb(0,0,0)'
+    let colorOfSketch = 'rgb(0,0,0)';
+
+    randomColor.addEventListener('click',()=>{
+        colorOfSketch = randomRGB();
+    })
+
+    randomColors.addEventListener('click', ()=>{
+        const rowSquare = document.querySelectorAll('.rowSquare');
+        rowSquare.forEach(square => {
+            square.addEventListener('mouseover', ()=>{
+                colorOfSketch = randomRGB();
+            })
+        })
+    })
+
     colorPicker.addEventListener('input', () => {
         colorOfSketch = `${colorPicker.value}`;
-       
     })
 
     // column with each div of display flex
@@ -55,12 +70,18 @@ gridSquares.forEach(square => {
 });
 }
 
+// random colors button event listener
+randomColors.addEventListener('click',()=>{
+
+})
+
 // clear button listener
 clear.addEventListener('click', () => {
     const rowSquare = document.querySelectorAll('.rowSquare');
     rowSquare.forEach(square => {
         square.style.backgroundColor = 'white';
-        square.style.opacity = 1
+        square.style.opacity = '0.10';
+        square.style.hover = '0.10';
     })
 
 });
