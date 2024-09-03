@@ -1,5 +1,6 @@
 const canvas = document.querySelector(".gridCanvas");
 const gridSizeButton = document.querySelector(".grid-size-btn");
+const clear = document.querySelector('.clear');
 const eraser = document.querySelector('.eraser');
 const gridRange = document.querySelector('.grid-range');
 const colorPicker = document.querySelector('.colorPicker');
@@ -14,9 +15,9 @@ function randomRGB() {
 function grid(dimensions) {
 
     let colorOfSketch = 'rgb(0,0,0)'
-    colorPicker.addEventListener('input', ()=>{
+    colorPicker.addEventListener('input', () => {
         colorOfSketch = `${colorPicker.value}`;
-        colorPicker.toggleAttribute
+       
     })
 
     // column with each div of display flex
@@ -29,33 +30,50 @@ function grid(dimensions) {
         for (j = 1; j <= dimensions; j++) {
             const rowSquare = document.createElement("div");
             rowSquare.classList.add("rowSquare");
-
-
-            
-            rowSquare.addEventListener('mouseover',(e)=>{
+            rowSquare.addEventListener('mouseover', (e) => {
                 e.preventDefault();
                 rowSquare.style.backgroundColor = `${colorOfSketch}`;
-               
-               
-
             })
-      
-
             columnDiv.appendChild(rowSquare);
         }
     }
+    // grid square event listener
+const gridSquares = document.querySelectorAll('.rowSquare');
+// make the hover progressive color fill
+gridSquares.forEach(square => {
+    let hover = 0;
+    square.addEventListener('mouseover',()=>{
+    hover+= 0.10;
+    if(hover === 1){
+        square.style.opacity = 1
+        console.log('i am hover')
+    }else{
+        square.style.opacity = hover;
+        console.log('i am hover')
+    }
+    })
+});
 }
-eraser.addEventListener('click', () => {
+
+// clear button listener
+clear.addEventListener('click', () => {
     const rowSquare = document.querySelectorAll('.rowSquare');
     rowSquare.forEach(square => {
         square.style.backgroundColor = 'white';
+        square.style.opacity = 1
     })
-    
+
 });
+
+
+
+// slider event listener
 gridRange.addEventListener('input', () => {
     canvas.textContent = "";
     grid(gridRange.value);
 })
+
+// grid size button listener
 
 gridSizeButton.addEventListener("click", () => {
     canvas.textContent = "";
@@ -67,5 +85,6 @@ gridSizeButton.addEventListener("click", () => {
         alert("Please input a number below 100");
     }
 });
-grid(gridRange.value);
 
+// default gird on starting
+grid(gridRange.value);
